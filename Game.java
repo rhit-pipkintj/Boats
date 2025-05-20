@@ -19,7 +19,6 @@ public class Game {
     private CardLayout cardLayout;
     private JPanel mainPanel;
     private BoatPanel boatPanel;
-    private EnemyPanel enemyPanel;
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new Game().createGUI());
@@ -70,9 +69,6 @@ public class Game {
         panel.setBackground(new Color(20, 180, 220));
 
         boatPanel = new BoatPanel();
-        panel.add(boatPanel, BorderLayout.CENTER);
-        
-        enemyPanel = new EnemyPanel();
         panel.add(boatPanel, BorderLayout.CENTER);
 
         return panel;
