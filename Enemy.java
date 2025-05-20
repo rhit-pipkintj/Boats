@@ -36,11 +36,11 @@ public class Enemy {
 
     }
 
-    public void moveTowards(Player player) {
+    public void moveTowards(Player player, int playerX, int playerY) {
 
-        float dx = player.getX() - this.x;
+        float dx = playerX - this.x;
 
-        float dy = player.getY() - this.y;
+        float dy = playerY - this.y;
 
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
         
@@ -54,11 +54,11 @@ public class Enemy {
 
     }
 
-    public boolean checkCollision(Player player) {
+    public boolean checkCollision(Player player, int playerX, int playerY) {
 
-        float dx = player.getX() - this.x;
+        float dx = playerX - this.x;
 
-        float dy = player.getY() - this.y;
+        float dy = playerY - this.y;
 
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
 
@@ -66,15 +66,15 @@ public class Enemy {
 
     }
 
-    public void onHitPlayer(Player player) {
-
-        if (checkCollision(player)) {
-
-            player.takeDamage(this.damage);
-
-        }
-
-    }
+//    public void onHitPlayer(Player player) {
+//
+//        if (checkCollision(player)) {
+//
+//            player.takeDamage(this.damage);
+//
+//        }
+//
+//    }
 
     public void takeDamage(int amount) {
 
@@ -113,4 +113,3 @@ public class Enemy {
         g.fillRect(x, y, 20, 20);
     }
 
-}
