@@ -1,22 +1,24 @@
 package project;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class Enemy {
 
-    private float x, y;
+    int x, y;
 
-    private float speed;
+    private double speed;
 
-    private int health;
+    private double health;
 
     private int damage;
 
     private int xpReward;
 
-    private float hitboxRadius;
+    private int hitboxRadius;
 
- 
 
-    public Enemy(float x, float y, float speed, int health, int damage, int xpReward, float hitboxRadius) {
+    public Enemy(int x, int y, double speed, double health, int damage, int xpReward, int hitboxRadius) {
 
         this.x = x;
 
@@ -34,18 +36,14 @@ public class Enemy {
 
     }
 
- 
+    public void moveTowards(Player player, int playerX, int playerY) {
 
-    public void moveTowards(Player player) {
+        float dx = playerX - this.x;
 
-        float dx = player.getX() - this.x;
-
-        float dy = player.getY() - this.y;
+        float dy = playerY - this.y;
 
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
-
- 
-
+        
         if (distance > 0) {
 
             this.x += (dx / distance) * speed;
@@ -56,13 +54,11 @@ public class Enemy {
 
     }
 
- 
+    public boolean checkCollision(Player player, int playerX, int playerY) {
 
-    public boolean checkCollision(Player player) {
+        float dx = playerX - this.x;
 
-        float dx = player.getX() - this.x;
-
-        float dy = player.getY() - this.y;
+        float dy = playerY - this.y;
 
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
 
@@ -70,19 +66,15 @@ public class Enemy {
 
     }
 
- 
-
-    public void onHitPlayer(Player player) {
-
-        if (checkCollision(player)) {
-
-            player.takeDamage(this.damage);
-
-        }
-
-    }
-
- 
+//    public void onHitPlayer(Player player) {
+//
+//        if (checkCollision(player)) {
+//
+//            player.takeDamage(this.damage);
+//
+//        }
+//
+//    }
 
     public void takeDamage(int amount) {
 
@@ -92,15 +84,11 @@ public class Enemy {
 
     }
 
- 
-
     public boolean isAlive() {
 
         return this.health > 0;
 
     }
-
- 
 
     public int getXpReward() {
 
@@ -108,20 +96,25 @@ public class Enemy {
 
     }
 
- 
-
-    public float getX() {
+    public int getX() {
 
         return this.x;
 
     }
 
- 
-
-    public float getY() {
+    public int getY() {
 
         return this.y;
 
+    }
+    
+    public double getHealth() {
+    	return this.health;
+    }
+    
+    public void draw(Graphics g) {
+    	g.setColor(Color.BLACK);
+        g.fillRect(x, y, 20, 20);
     }
 
 }
