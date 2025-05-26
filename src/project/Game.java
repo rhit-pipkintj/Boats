@@ -1,7 +1,6 @@
 package project;
 import java.awt.*;
 
-import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -11,7 +10,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
- 
+ /**
+  * This is the main driver of the game. Creates the game screen, along with the start and end screens and switches between them.
+  */
 
 public class GameApp {
 
@@ -55,6 +56,7 @@ public class GameApp {
 
         cardLayout.show(mainPanel, "StartScreen");
         
+        //If player is dead, show game over screen
         timer = new Timer(15, e -> {
             if (!boatPanel.isAlive()) {
                 boatPanel.setHealth();
