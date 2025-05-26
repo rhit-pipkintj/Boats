@@ -1,46 +1,35 @@
 package project;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
+/**
+ * This class controls everything that happens to the enemy boats.
+ */
 public class Enemy {
 
     int x, y;
-
     private double speed;
-
     private double health;
-
     private int damage;
-
-    private int xpReward;
-
+    private double xpReward;
     private int hitboxRadius;
 
-
-    public Enemy(int x, int y, double speed, double health, int damage, int xpReward, int hitboxRadius) {
+    public Enemy(int x, int y, double speed, double health, int damage, double xpReward, int hitboxRadius) {
 
         this.x = x;
-
         this.y = y;
-
         this.speed = speed;
-
         this.health = health;
-
         this.damage = damage;
-
         this.xpReward = xpReward;
-
         this.hitboxRadius = hitboxRadius;
-
+        
+       
     }
 
     public void moveTowards(Player player, int playerX, int playerY) {
 
-        float dx = playerX - this.x;
+        float dx = (playerX+30) - this.x;
 
-        float dy = playerY - this.y;
+        float dy = (playerY+30) - this.y;
 
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
         
@@ -56,9 +45,9 @@ public class Enemy {
 
     public boolean checkCollision(Player player, int playerX, int playerY) {
 
-        float dx = playerX - this.x;
+        float dx = (playerX+30) - (this.x+15);
 
-        float dy = playerY - this.y;
+        float dy = (playerY+30) - (this.y+15);
 
         float distance = (float) Math.sqrt(dx * dx + dy * dy);
 
@@ -66,17 +55,8 @@ public class Enemy {
 
     }
 
-//    public void onHitPlayer(Player player) {
-//
-//        if (checkCollision(player)) {
-//
-//            player.takeDamage(this.damage);
-//
-//        }
-//
-//    }
 
-    public void takeDamage(int amount) {
+    public void takeDamage(double amount) {
 
         this.health -= amount;
 
@@ -90,7 +70,7 @@ public class Enemy {
 
     }
 
-    public int getXpReward() {
+    public double getXpReward() {
 
         return this.xpReward;
 
@@ -108,13 +88,14 @@ public class Enemy {
 
     }
     
+    public int getDamage() {
+    	return this.damage;
+    }
+    
     public double getHealth() {
     	return this.health;
     }
     
-    public void draw(Graphics g) {
-    	g.setColor(Color.BLACK);
-        g.fillRect(x, y, 20, 20);
-    }
+    
 
 }
