@@ -1,26 +1,23 @@
 package project;
 
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
-
-
+/**
+ * This class controls what happens with the player boat.
+ */
 public class Player {
 	
 	int x, y, dx, dy;
     private int speed;
     private int health;
-    private int damage;
+    private double damage;
+    private double xp;
     private float hitboxRadius;
-    private Rectangle rect;
+    int boatAngle;
     
-    public Player(int x, int y, int speed, int health, int damage, float hitboxRadius) {
+    public Player(int x, int y, int speed, int health, double damage, float hitboxRadius) {
     	
         this.x = x;
         this.y = y;
@@ -28,7 +25,6 @@ public class Player {
         this.health = health;
         this.damage = damage;
         this.hitboxRadius = hitboxRadius;
-        rect = new Rectangle(x, y, 30, 30);
 
     }
     
@@ -48,12 +44,30 @@ public class Player {
     	return this.hitboxRadius;
     }
     
-    void draw(Graphics g, int x, int y) {
-        g.setColor(Color.RED);
-        g.fillRect(x, y, 30, 30);
+    void draw(Graphics2D g2, int x, int y) {
+        g2.setColor(Color.RED);
+        g2.fillRect(x, y, 30, 30);
     }
+    
+    
+    public int getHealth() {
+    	return this.health;
+    }
+    
+    public boolean isAlive() {
+
+        return this.health > 0;
+
+    }
+    public void setHealth(int newHealth) {
+    	this.health = newHealth;
+    }
+
+	public double getXP() {
+		
+		return this.xp;
+	}
 
 	
 
 }
-
